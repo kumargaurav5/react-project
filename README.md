@@ -92,3 +92,5 @@ Try to Find out difference between old and new Virtual Dom and Then Update Real 
 **[Reconciliation algorithm](https://github.com/acdlite/react-fiber-architecture)**
  
 Why not to use index as key in React Lists (Practical Example)   **[Read](https://dev.to/shiv1998/why-not-to-use-index-as-key-in-react-lists-practical-example-3e66)**
+
+whenever we change state variable , react rerender whole component.
