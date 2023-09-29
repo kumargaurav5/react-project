@@ -1,6 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utlis/useOnlineStatus";
 
 const Body = () => {
   const [listresObj, setlistresObj] = useState([]);
@@ -13,7 +15,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.2942254&lng=85.744396&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
     );
     const jsondata = await data.json();
     // console.log(
@@ -21,14 +23,21 @@ const Body = () => {
     //     ?.restaurants,
     // );
     setlistresObj(
-      jsondata?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsondata?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
     );
     setfillistresObj(
-      jsondata?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsondata?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
     );
   };
+
+  const onlineStatus=useOnlineStatus()
+  if(onlineStatus===false){
+    return(
+      <h1>offline</h1>
+    )
+  }
 
   return listresObj.length === 0 ? (
     <Shimmer />
@@ -69,7 +78,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {fillistresObj.map((restaurant) => (
-          <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
+          <Link
+            key={restaurant?.info?.id}
+            to={"restaurant/" + restaurant?.info?.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
