@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utlis/contants";
+import UserContext from "../utlis/UserContext";
 const RestaurantCard = (props) => {
   const {
     name,
@@ -9,8 +11,10 @@ const RestaurantCard = (props) => {
     sla,
   } = props?.resData?.info;
 
+  const data = useContext(UserContext);
+
   return (
-    <div className="res-card w-[18rem] h-96 p-3 m-4 bg-slate-100 shadow rounded-lg">
+    <div className="res-card w-[18rem] h-96 p-3 my-4 mx-3 bg-slate-100 shadow rounded-lg">
       <img
         className="res-logo"
         alt="Gaurav Foods"
@@ -32,6 +36,7 @@ const RestaurantCard = (props) => {
       </div>
       <h4 className="font-medium"> {costForTwo}</h4>
       <h4 className="font-medium"> {sla.deliveryTime} min</h4>
+      
     </div>
   );
 };
