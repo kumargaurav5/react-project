@@ -8,6 +8,7 @@ import Contact from './components/Contact'
 import Error from './components/Error'
 import RestaurantMenu from './components/RestaurantMenu'
 import Shimmer from './components/shimmer'
+import Cart from './components/Cart'
 // import Header from './components/Header';
 // import Body from './components/Body';
 
@@ -52,7 +53,13 @@ const appRouter=createBrowserRouter([
 
           path:'/grocery',
           element:<Suspense fallback={<Shimmer/>}> <Grocery/> </Suspense>
-        }
+        },
+
+        {
+          path:'/cart',
+          element:<Cart/>
+        },
+
     ],
     
     errorElement:<Error/>,
