@@ -93,7 +93,7 @@ const Body = () => {
               >
                 {
                   /* if the restaurant is Promoted show Promoted else not */
-                  restaurant?.info?.avgRating > 4.2 ? (
+                  restaurant?.info?.avgRating >= 4.5 ? (
                     <RestaurantCardPromoted resData={restaurant} />
                   ) : (
                     <RestaurantCard resData={restaurant} />
